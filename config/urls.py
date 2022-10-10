@@ -25,8 +25,8 @@ urlpatterns = [
                   path('', include('books.urls')),
                   path('detail/', include('pages.urls')),
                   # path('rosetta/', include('rosetta.urls')),
-                  # path('news/', include('posts.urls')),
-                  # path('cart/', include('cart.urls')),
+                  path('news/', include('posts.urls')),
+                  path('cart/', include('cart.urls')),
 
               ] + static(settings.MEDIA_URL,
                          document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,

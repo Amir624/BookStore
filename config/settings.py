@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'jalali_date',
     'django_filters',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'books.context_processors.author_list',
                 'posts.context_processors.post_star',
-                # 'cart.context_processors.cart',
+                'cart.context_processors.cart',
             ],
         },
     },

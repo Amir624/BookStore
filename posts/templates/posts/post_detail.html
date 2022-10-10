@@ -1,0 +1,127 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% load jalali_tags %}
+{% block title %}
+    <title>detail news</title>
+
+{% endblock %}
+
+
+{% block content %}
+    <main id="tg-main" class="tg-main tg-haslayout">
+        <!--************************************
+                News Grid Start
+        *************************************-->
+        <div class="tg-sectionspace tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <figure class="tg-newsdetailimg">
+                                <img src="{{ post.cover.url }}" alt="image description">
+                                <figcaption class="tg-author">
+                                    <img src="{% static 'images/author/imag-26.jpg' %}" alt="image description">
+                                    <div class="tg-authorinfo">
+                                        <span class="tg-bookwriter">توسط: <a href="javascript:void(0);">{{ post.user|capfirst }} </a></span>
+
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+                            <div id="tg-content" class="tg-content">
+                                <div class="tg-newsdetail">
+
+                                    <div class="tg-themetagbox"><span class="tg-themetag">جدیدترین‌ها</span></div>
+                                    <div class="tg-posttitle">
+                                        <h3><a href="javascript:void(0);">{{ post.title }}</a></h3>
+                                    </div>
+                                    <div class="tg-description">
+                                        <p>{{ post.description | safe }}</p>
+                                        <blockquote>
+
+                                            <span class="tg-bookwriter">توسط: <a
+                                                    href="javascript:void(0);">{{ post.user |capfirst }} </a></span>
+                                        </blockquote>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="tg-commentsarea">
+                                    <div class="tg-sectionhead">
+                                        <h2>{{ comments_post.count }} نظر</h2>
+                                    </div>
+                                    <ul id="tg-comments" class="tg-comments">
+                                        <li>
+                                            {% for comment in comments_post %}
+                                                <div class="tg-authorbox">
+
+                                                    <div class="tg-authorinfo">
+                                                        <div class="tg-authorhead">
+                                                            <div class="tg-leftarea">
+                                                                <div class="tg-authorname">
+                                                                    <h2>{{ user.username|capfirst }}</h2>
+                                                                    <p>{{ comment.datetime_create| to_jalali:'%y/%m/%d' }}</p>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="tg-rightarea">
+                                                                <a class="tg-btnreply" href="javascript:void(0);">پاسخ<i
+                                                                        class="fa fa-mail-reply"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tg-description">
+                                                            <p>
+                                                                {{ comment.text }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tg-bottomarrow"></div>
+
+                                                </div>
+                                            {% endfor %}
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="tg-leaveyourcomment">
+                                    <div class="tg-sectionhead">
+                                        <h2>ارسال نظر</h2>
+                                    </div>
+                                {% if user.is_authenticated %}
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        {{ forms|crispy }}
+                                        <button class="ui-button" type="submit">send</button>
+                                    </form>
+                                {% else %}
+                                        <h3> برای ثبت نظر ابتدا وارد سایت شوید</h3>
+                                        <a href="{% url 'login' %}?next= {{  request.path }} " class="ui-button">Login</a>  <a href="{% url 'signup' %}" class="ui-button">Sign Up</a>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                News Grid End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+
+
+
+
+
+
+{% endblock %}

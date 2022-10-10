@@ -1,0 +1,209 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>news</title>
+
+{% endblock %}
+
+{% block content %}
+
+<main id="tg-main" class="tg-main tg-haslayout">
+    <!--************************************
+            News Grid Start
+    *************************************-->
+    <div class="tg-sectionspace tg-haslayout">
+        <div class="container">
+            <div class="row">
+                <div id="tg-twocolumns" class="tg-twocolumns">
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+                        <div id="tg-content" class="tg-content">
+                            <div class="tg-newslist">
+                                <div class="tg-sectionhead">
+                                    <h2><span>آخرین اخبار و مقالات</span> داغ ترین اخبار</h2>
+                                </div>
+                                <div class="row">
+                                    {% for news in post %}
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <article class="tg-post">
+                                                <figure><a href="javascript:void(0);"><img src="{{ news.cover.url }}"
+                                                                                           alt="image description"></a>
+                                                </figure>
+                                                <div class="tg-postcontent">
+                                                    <ul class="tg-bookscategories">
+                                                        <li><a href="javascript:void(0);">مقاله</a></li>
+                                                        <li><a href="javascript:void(0);">سرگرم‌کننده</a></li>
+                                                    </ul>
+                                                    <div class="tg-themetagbox"><span
+                                                            class="tg-themetag">جدیدترین‌ها</span></div>
+                                                    <div class="tg-posttitle">
+                                                        <h2><a href="{% url 'detail_post' news.id %}">{{ news.title }}</a></h2>
+                                                    </div>
+                                                    <div class="tg-description">
+                                                        <p>{{ news.description | safe }}<a href="{% url 'detail_post' news.id %}">بیشتر</a></p>
+                                                    </div>
+                                                    <span class="tg-bookwriter">توسط: <a
+                                                            href="javascript:void(0);">{{ news.user }}</a></span>
+
+                                                </div>
+                                            </article>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
+                        <aside id="tg-sidebar" class="tg-sidebar">
+                            <div class="tg-widget tg-widgetsearch">
+                                <form class="tg-formtheme tg-formsearch" action="{% url 'search' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <button type="submit"><i class="icon-magnifier"></i></button>
+                                        <input type="search" name="searched" class="form-group" placeholder="جستجو">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tg-widget tg-catagories">
+                                <div class="tg-widgettitle">
+                                    <h3>دسته‌بندی‌ها</h3>
+                                </div>
+                                <div class="tg-widgetcontent">
+                                    <ul>
+                                        {% for cat in category %}
+                                            <li><a href="{% url 'category' cat.id %}"><span>{{ cat.name }}</span></a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tg-widget tg-widgettrending">
+                                <div class="tg-widgettitle">
+                                    <h3>پست های ترند</h3>
+                                </div>
+
+
+                                <div class="tg-widgetcontent">
+                                    <ul>
+                                        {% for star in stars %}
+                                        <li>
+                                            <article class="tg-post">
+                                                <figure><a href="javascript:void(0);"><img src="{{ star.cover.url }}"
+                                                                                           alt="image description"></a>
+                                                </figure>
+                                                <div class="tg-postcontent">
+                                                    <div class="tg-posttitle">
+                                                        <h3><a href="{% url 'detail_post' star.id %}">{{ star.title }}</a></h3>
+                                                    </div>
+                                                    <span class="tg-bookwriter">توسط: <a
+                                                            href="javascript:void(0);">{{ star.user }}</a></span>
+                                                </div>
+                                            </article>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <div class="tg-widget tg-widgetinstagram">
+                                <div class="tg-widgettitle">
+                                    <h3>اینستاگرام</h3>
+                                </div>
+                                <div class="tg-widgetcontent">
+                                    <ul>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-01.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-02.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-03.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-04.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-05.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-06.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-07.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-08.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                        <li>
+                                            <figure>
+                                                <img src="{% static 'images/instagram/img-09.jpg' %}"
+                                                     alt="image description">
+                                                <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                </figcaption>
+                                            </figure>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+            News Grid End
+    *************************************-->
+</main>
+<!--************************************
+        Main End
+*************************************-->
+
+
+{% endblock %}

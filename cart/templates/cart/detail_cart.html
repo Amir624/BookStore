@@ -1,0 +1,147 @@
+{% extends '_base.html' %}
+{% load static %}
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>cart</title>
+        <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    </head>
+    <body>
+
+    {% if cart %}
+        <h1>سبد خرید</h1>
+        <p>تعداد محصولات را اضافه و کم کنید و سبد خود را آپدیت کنید.</p>
+        <a  href="{% url 'cart:clear_cart' %}"><button class="btn"><i class="fa fa-trash"></i> خالی کردن سبد خرید</button></a>
+        <!-- start undo button -->
+        <p class="removeAlert">
+            آیتم مورد نظر حذف شد. اشتباه کردید؟ <a href="#">برگرداندن آیتم</a>
+        </p>
+        <!-- end undo button -->
+
+
+        <table class="items">
+            <thead>
+            <!-- start table head -->
+            <tr>
+                <th>نام محصول</th>
+                <th>قیمت</th>
+                <th>تعداد</th>
+                <th>مجموع</th>
+            </tr>
+            <!-- end table head -->
+            </thead>
+            <tbody>
+            <!-- start table body -->
+            <tr>
+                {% for item in cart %}    <!-- start item one -->
+                    <td>
+                        <div class="item">
+                            <div class="item-front">
+                                <img src="{{ item.product_obj.cover.url }}"/>
+                            </div>
+
+                        </div>
+                        <p> {{ item.product_obj.title }} </p>
+
+                        <a href="{% url 'cart:remove_cart' item.product_obj.id %}">
+                            حذف
+
+                        </a>
+
+
+                    </td>
+                    <td>{{ item.product_obj.price }} تومان</td>
+
+                    <td class="product-quantity">
+                        <form class="d-flex" method="POST" action="{% url 'cart:add_cart' item.product_obj.id %}">
+                            {% csrf_token %}
+                            <div class="quantity">
+                                <input
+                                        type="number"
+                                        class="quantity"
+                                        name="quantity"
+                                        id="qty-1"
+                                        value="{{ item.quantity }}"
+                                        min="1"
+                                >
+                            </div>
+                            {{ item.product_update_quantity_form.inplace }}
+                            <button class="small" type="submit"><i class="fa fa-refresh"></i></button>
+                        </form>
+                    </td>
+                    <td class="itemTotal">{{ item.total_price }} تومان</td>
+                    <!-- end item one -->
+                    </tr>
+                {% endfor %}
+
+            <!-- end table body -->
+            </tbody>
+        </table>
+
+        <!-- start checkout list -->
+        <div class="cost">
+            <h2>پیش فاکتور</h2>
+
+            <table class="pricing">
+                <tbody>
+                <tr>
+                    <td>قیمت کل</td>
+                    <td class="subtotal"></td>
+                </tr>
+
+                <tr>
+                    <td>هزینه ارسال</td>
+                    <td class="shipping"> رایگان</td>
+                </tr>
+                <tr>
+                    <td><strong>مجموع:</strong></td>
+                    <td class="subtotal"> </td>
+                </tr>
+                </tbody>
+            </table>
+            <a class="cta" href="#">خرید</a>
+        </div><!-- end checkout list -->
+    <!-- End Content -->
+    {% else %}
+
+
+ <h2 style="text-align: center; vertical-align: middle;" > سبد خرید شما خالی است   </h2>
+        <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+{% endif %}
+
+    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    </body><!-- This template has been downloaded from Webrubik.com -->
+    </html>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const qty_buttons = document.getElementsByClassName('qtybutton');
+        for (let btn of qty_buttons) {
+            btn.addEventListener('click', e => {
+                console.log(e.target.parentNode.parentNode.submit());
+
+            })
+        }
+    </script>
+
+{% endblock %}
