@@ -1,0 +1,320 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    <title>home page </title>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+    <main id="tg-main" class="tg-main tg-haslayout">
+        <!--************************************
+                News Grid Start
+        *************************************-->
+        <div class="tg-sectionspace tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+                            <div id="tg-content" class="tg-content">
+                                <div class="tg-products">
+                                    <div class="tg-sectionhead">
+                                        <h2><span>{% trans 'By people choice'%}</span>{% trans 'Bestselling' %}</h2>
+                                    </div>
+                                    <div class="tg-featurebook alert" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <div class="tg-featureditm">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 hidden-sm hidden-xs">
+                                                    <figure><img src="{% static 'images/img-04.png' %}"
+                                                                 alt="image description"></figure>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                                    <div class="tg-featureditmcontent">
+                                                        <div class="tg-themetagbox"><span class="tg-themetag">جدیدترین‌ها</span>
+                                                        </div>
+                                                        <div class="tg-booktitle">
+                                                            <h3><a href="javascript:void(0);">چیزهایی که راجع به طراحی
+                                                                فلت باید دونست </a></h3>
+                                                        </div>
+                                                        <span class="tg-bookwriter">توسط: <a href="javascript:void(0);">فرح شکوفا</a></span>
+                                                        <span class="tg-stars"><span></span></span>
+                                                        <div class="tg-priceandbtn">
+																<span class="tg-bookprice">
+																	<ins>230 تومان</ins>
+																	<del>302 تومان</del>
+																</span>
+                                                            <a class="tg-btn tg-btnstyletwo tg-active"
+                                                               href="#">
+                                                                <i class="fa fa-shopping-basket"></i>
+                                                                <em>افزودن به سبدخرید</em>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tg-productgrid">
+                                        <div class="tg-refinesearch">
+
+                                            <form >
+                                                <fieldset>
+                                                    <div>
+                                                        <p>{% trans 'sort by' %}: </p>
+                                                        <a class="filter_by" href="{% url 'sort_book' %}?sort=low">{% trans 'cheap' %}</a>/
+                                                        <a class="filter_by" href="{% url 'sort_book' %}?sort=new">{% trans 'news' %} </a>
+                                                    </div>
+
+                                                </fieldset>
+                                            </form>
+
+
+                                        </div>
+
+
+
+
+                                        {% for book in books %}
+                                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                                                <div class="tg-postbook">
+                                                    <figure class="tg-featureimg">
+                                                        <div class="tg-bookimg">
+                                                            <div class="tg-frontcover"><img src="{{ book.cover.url }}"
+                                                                                            alt="image description">
+                                                            </div>
+                                                            <div class="tg-backcover"><img src="{{ book.cover.url }}"
+                                                                                           alt="image description">
+                                                            </div>
+                                                        </div>
+                                                        <a class="tg-btnaddtowishlist" href="{% url 'favorite' book.id %}">
+                                                            <i class="icon-heart"></i>
+                                                            <span>{% trans 'add to favorite' %}</span>
+                                                        </a>
+                                                    </figure>
+                                                    <div class="tg-postbookcontent">
+                                                        <ul class="tg-bookscategories">
+                                                            <li><a href="javascript:void(0); ">{{ book.genre }}</a></li>
+
+                                                        </ul>
+                                                        <div class="tg-themetagbox"><span
+                                                                class="tg-themetag">{% trans 'sale' %}</span></div>
+                                                        <div class="tg-booktitle">
+                                                            <h3><a href=" {% url 'detail_page' book.id %}  ">{{ book.title }}</a></h3>
+                                                        </div>
+                                                        <span class="tg-bookwriter">{% trans 'by' %}: <a
+                                                                href="javascript:void(0);">{{ book.author }}</a></span>
+                                                        <span class="tg-stars"><span></span></span><br>
+                                                        <span class="tg-bookprice">
+                                                            <br>
+															<ins>{{ book.price }} تومان</ins>
+
+														</span>
+                                                        <form class="tg-quantityholder"
+                                                          action="{% url 'cart:add_cart' book.id %} " method="post">
+                                                        {% csrf_token %}
+
+                                                            <input type="hidden" class="quantity-input" name="quantity"
+                                                                   id="qty" value="1"
+                                                                   min="1" max="30"  placeholder="1">
+
+                                                            <button type="submit" class="tg-btn tg-btnstyletwo" >{% trans 'add to cart' %}
+                                                            </button>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
+                            <aside id="tg-sidebar" class="tg-sidebar">
+                                <div class="tg-widget tg-widgetsearch">
+                                    <form class="tg-formtheme tg-formsearch" action="{% url 'search' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <button type="submit"><i class="icon-magnifier"></i></button>
+                                            <input type="search" name="searched" class="form-group"
+                                                   placeholder="{% trans 'search by title, author ....' %} ">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tg-widget tg-catagories">
+                                    <div class="tg-widgettitle">
+                                        <h3>{% trans 'category' %}</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            {% for cat in category %}
+
+
+                                            <li><a href="{% url 'category' cat.id %}"><span>{{ cat.name }}</span><em></em></a>
+                                            </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tg-widget tg-widgettrending">
+                                    <div class="tg-widgettitle">
+                                        <h3>{% trans 'trend news' %}</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+
+                                            <li>
+                                                {% for star in stars %}
+                                                <article class="tg-post">
+                                                    <figure><a href="javascript:void(0);"><img
+                                                            src="{{ star.cover.url }}"
+                                                            alt="image description"></a></figure>
+                                                    <div class="tg-postcontent">
+                                                        <div class="tg-posttitle">
+                                                            <h3><a href="{% url 'detail_post' star.id %}">{{ star.title }}</a>
+                                                            </h3>
+                                                        </div>
+                                                        <span class="tg-bookwriter">{% trans 'by' %}: <a href="javascript:void(0);">{{ star.user}}</a></span>
+                                                    </div>
+                                                </article>
+                                                {% endfor %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tg-widget tg-widgetinstagram">
+                                    <div class="tg-widgettitle">
+                                        <h3>{% trans 'instagram' %}</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-01.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-02.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-03.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-04.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-05.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-06.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-07.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-08.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                            <li>
+                                                <figure>
+                                                    <img src="{% static 'images/instagram/img-09.jpg' %}"
+                                                         alt="image description">
+                                                    <figcaption><a href="javascript:void(0);"><i class="icon-heart"></i><em>50,134</em></a>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tg-widget tg-widgetblogers">
+                                    <div class="tg-widgettitle">
+                                        <h3>{% trans 'best authors' %}</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            {% for author in authors %}
+                                                <li>
+                                                    <div class="tg-author">
+                                                    {% if author.avatar %}
+                                                        <figure><a href="{% url 'detail_author' author.id %}"><img
+                                                                src="{{ author.avatar.url }}"
+                                                                alt="image description"></a></figure>
+                                                    {% else %}
+                                                         <figure><a href="{% url 'detail_author' author.id %}"><img
+                                                                src="{% static 'images/author/imag-22.jpg' %}"
+                                                                alt="image description"></a></figure>
+                                                    {% endif %}
+                                                        <div class="tg-authorcontent">
+                                                            <h2><a href="{% url 'detail_author' author.id %}">{{ author.name }}</a></h2>
+
+                                                        </div>
+                                                    </div>
+
+                                                </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                News Grid End
+        *************************************-->
+    </main>
+
+
+
+
+
+{% endblock %}

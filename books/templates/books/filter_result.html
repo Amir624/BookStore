@@ -1,0 +1,106 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block title %}
+    <title> filter </title>
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+    <main id="tg-main" class="tg-main tg-haslayout">
+        <!--************************************
+                News Grid Start
+        *************************************-->
+        <div class="tg-sectionspace tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+                            <div id="tg-content" class="tg-content">
+
+                                <form method="post" action="{% url 'filter' %}" >
+                                    {% csrf_token %}
+                                        {{ filter.form | crispy }}
+                                    <button type="submit" class="tg-btn tg-btnstyletwo tg-active"   > {% trans 'filter' %}</button>
+                                </form>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+
+                                {% for book in filter.qs %}
+                                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                                        <div class="tg-postbook">
+                                            <figure class="tg-featureimg">
+                                                <div class="tg-bookimg">
+                                                    <div class="tg-frontcover"><img src="{{ book.cover.url }}"
+                                                                                    alt="image description">
+                                                    </div>
+                                                    <div class="tg-backcover"><img src="{{ book.cover.url }}"
+                                                                                   alt="image description">
+                                                    </div>
+                                                </div>
+                                                <a class="tg-btnaddtowishlist" href="{% url 'favorite' book.id %}">
+                                                    <i class="icon-heart"></i>
+                                                    <span>{% trans 'add to favorite' %}</span>
+                                                </a>
+                                            </figure>
+                                            <div class="tg-postbookcontent">
+                                                <ul class="tg-bookscategories">
+                                                    <li><a href="javascript:void(0); ">{{ book.genre }}</a></li>
+
+                                                </ul>
+                                                <div class="tg-themetagbox"><span
+                                                        class="tg-themetag">{% trans 'sale' %}</span></div>
+                                                <div class="tg-booktitle">
+                                                    <h3>
+                                                        <a href=" {% url 'detail_page' book.id %}  ">{{ book.title }}</a>
+                                                    </h3>
+                                                </div>
+                                                <span class="tg-bookwriter">{% trans 'by' %}: <a
+                                                        href="javascript:void(0);">{{ book.author }}</a></span>
+                                                <span class="tg-stars"><span></span></span>
+                                                <span class="tg-bookprice"><br>
+                                                        <ins>{{ book.price }} تومان</ins>
+
+                                                    </span>
+                                                <a class="tg-btn tg-btnstyletwo" href="{% url 'cart:add_cart' book.id %}">
+                                                    <i class="fa fa-shopping-basket"></i>
+                                                    <em>{% trans 'add to cart' %}</em>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <!--************************************
+                News Grid End
+        *************************************-->
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

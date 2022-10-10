@@ -1,0 +1,279 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load jalali_tags %}
+{% load i18n %}
+{% block title %}
+    <title> detail page</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+    <!--************************************
+				Main Start
+		*************************************-->
+    <main id="tg-main" class="tg-main tg-haslayout">
+        <!--************************************
+                News Grid Start
+        *************************************-->
+        <div class="tg-sectionspace tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
+                            <div id="tg-content" class="tg-content">
+
+                                <div class="tg-productdetail">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="tg-postbook">
+                                                <figure class="tg-featureimg"><img src="{{ book.cover.url }}"
+                                                                                   alt="image description"></figure>
+                                                <div class="tg-postbookcontent">
+														<span class="tg-bookprice">
+															<ins>{{ book.price }} تومان</ins>
+
+														</span>
+
+                                                    <ul class="tg-delevrystock">
+                                                        <li><i class="icon-rocket"></i><span>{% trans 'Shipping to all locations' %}</span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="icon-checkmark-circle"></i><span>{% trans 'Shipping two business days' %}</span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="icon-store"></i><span>{% trans 'inventory' %}: <em>{% trans 'in stock' %}</em></span>
+                                                        </li>
+                                                    </ul>
+                                                    <form class="tg-quantityholder"
+                                                          action="{% url 'cart:add_cart' book.id %} " method="post">
+                                                        {% csrf_token %}
+
+                                                            <input type="number" class="quantity-input" name="quantity"
+                                                                   id="qty" value="1"
+                                                                   min="1" max="30"  placeholder="1">
+
+                                                            <button type="submit" class="tg-btn tg-active tg-btn-lg">
+                                                                {% trans 'add to cart' %}
+                                                            </button>
+                                                    </form>
+                                                    <a class="tg-btnaddtowishlist"
+                                                       href=" {% url 'favorite' book.id %} ">
+
+                                                        <span>{% trans 'add to favorite' %}</span>
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                                            <div class="tg-productcontent">
+                                                <ul class="tg-bookscategories">
+                                                    <li><a href="javascript:void(0);">{{ book.genere }}</a></li>
+                                                </ul>
+                                                <div class="tg-themetagbox"><span class="tg-themetag">{% trans 'sale' %}</span></div>
+                                                <div class="tg-booktitle">
+                                                    <h3>{{ book.title }}</h3>
+                                                </div>
+                                                <span class="tg-bookwriter">{% trans 'by' %}: <a
+                                                        href="javascript:void(0);">{{ book.author }}</a></span>
+
+
+                                                <div class="tg-description">
+
+                                                    <h4>
+                                                        {{ book.description | safe}}
+                                                    </h4>
+                                                </div>
+
+                                                <div class="tg-sectionhead">
+                                                    <br>
+                                                    <br>
+                                                    <h3>{% trans 'detail' %}</h3>
+                                                </div>
+                                                <ul class="tg-productinfo">
+                                                    <li><span>فرمت:</span><span>کاغذ سخت</span></li>
+                                                    <li><span>صفخات:</span><span>528 صفحات</span></li>
+                                                    <li><span>ابعاد:</span><span>153 x 234 x 43mm | 758g</span></li>
+                                                    <li><span>تاریخ انتشار:</span><span>27 مهر 1400</span></li>
+                                                    <li><span>انتشارات:</span><span>سوزان اورلاندو</span></li>
+                                                    <li><span>زیان:</span><span>انگلیسی</span></li>
+                                                    <li><span>تصویرسازی:</span><span>تصاویر ترواوت بی اند جی - 1 x 16pp رنگ</span>
+                                                    </li>
+                                                    <li><span>آی اس بی ان 10:</span><span>1234567890</span></li>
+                                                    <li><span>آی اس بی ان 13:</span><span>1234567890000</span></li>
+                                                    <li><span>فرمت های دیگر:</span><span>صوتی، ای بوک، کاغذ کاهی</span>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                        <div class="tg-productdescription">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="tg-sectionhead">
+                                                    <h2>{% trans 'Product Description' %}</h2>
+                                                </div>
+                                                <ul class="tg-themetabs" role="tablist">
+
+                                                    <li role="presentation"><a href="#review"
+                                                                               data-toggle="tab">{% trans 'comments' %}</a></li>
+                                                </ul>
+
+                                                <div class="tg-tab-content tab-content">
+                                                    <div role="tabpanel" class="tg-tab-pane tab-pane active"
+                                                         id="description">
+                                                        {% for comment in comments %}
+                                                            <div class="border-bottom mb-3">
+                                                                <h5 class="mb-3">{{ user.username }}</h5>
+                                                                <p>{{ comment.text }}</p>
+                                                            </div>
+                                                            <p>----------------------------------------------------</p>
+
+                                                        {% endfor %}
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="tg-productdescription">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                                    <div class="tg-tab-content tab-content">
+                                                        <div role="tabpanel" class="tg-tab-pane tab-pane active"
+                                                             id="description">
+
+                                                        {% if user.is_authenticated %}
+                                                            <form method="post" , action="">
+                                                                {% csrf_token %}
+                                                                {{ form|crispy }}
+                                                                <button CLASS="ui-button" type="submit"> ارسال</button>
+                                                            </form>
+
+                                                    {% else %}
+                                                            <h3>{% trans 'Log in first to post a comment' %}</h3>
+                                                            <a href="{% url 'login' %}?next= {{  request.get_full_path|urlencode }} " class="ui-button">{% trans 'Login' %}</a>  <a href="{% url 'signup' %}" class="ui-button">{% trans 'Sign Up' %} </a>
+                                                    {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tg-aboutauthor">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div class="tg-sectionhead">
+                                                        <br>
+                                                        <h2>{% trans 'about author' %}</h2>
+                                                    </div>
+                                                    <div class="tg-authorbox">
+                                                        <figure class="tg-authorimg">
+                                                            <img src="{% static 'images/author/imag-24.jpg' %}"
+                                                                 alt="image description">
+                                                        </figure>
+                                                        <div class="tg-authorinfo">
+                                                            <div class="tg-authorhead">
+                                                                <div class="tg-leftarea">
+                                                                    <div class="tg-authorname">
+                                                                        <h2>{{ book.author}}</h2>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="tg-description">
+                                                                <p>
+                                                                  {{ book.author.description| truncatewords:30 }}</p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tg-relatedproducts">
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div class="tg-sectionhead">
+                                                        <h2><span>{% trans 'Related products' %}</span>{% trans 'also view'%}</h2>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div id="tg-relatedproductslider"
+                                                         class="tg-relatedproductslider tg-relatedbooks owl-carousel">
+                                                        {% for author in book_author %}
+                                                            <div class="item">
+                                                                <div class="tg-postbook">
+                                                                    <figure class="tg-featureimg">
+                                                                        <div class="tg-bookimg">
+                                                                            <div class="tg-frontcover"><img
+                                                                                    src="{{ author.cover.url }}"
+                                                                                    alt="image description"></div>
+                                                                            <div class="tg-backcover"><img
+                                                                                    src="{{ author.cover.url }}"
+                                                                                    alt="image description"></div>
+                                                                        </div>
+                                                                        <a class="tg-btnaddtowishlist"
+                                                                           href="javascript:void(0);">
+                                                                            <i class="icon-heart"></i>
+                                                                            <span>{% trans 'add to favorite' %}</span>
+                                                                        </a>
+                                                                    </figure>
+                                                                    <div class="tg-postbookcontent">
+                                                                        <ul class="tg-bookscategories">
+                                                                            <li>
+                                                                                <a href="javascript:void(0);">{{ author.genre }}</a>
+                                                                            </li>
+
+                                                                        </ul>
+                                                                        <div class="tg-themetagbox"><span
+                                                                                class="tg-themetag">{% trans 'sale'%}</span>
+                                                                        </div>
+                                                                        <div class="tg-booktitle">
+                                                                            <h3><a href="javascript:void(0);">
+                                                                                {{ author.title }}
+                                                                            </a></h3>
+                                                                        </div>
+                                                                        <span class="tg-bookwriter">{% trans 'by' %}: <a
+                                                                                href="javascript:void(0);"> {{ author.author }}</a></span>
+                                                                        <span class="tg-stars"><span></span></span>
+                                                                        <span class="tg-bookprice">
+																		<ins>{{ author.price }} تومان</ins>
+
+																	</span>
+                                                                        <a class="tg-btn tg-btnstyletwo"
+                                                                           href="javascript:void(0);">
+                                                                            <i class="fa fa-shopping-basket"></i>
+                                                                            <em>{% trans 'add to cart' %}</em>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--************************************
+                    News Grid End
+            *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+
+
+
+{% endblock %}
