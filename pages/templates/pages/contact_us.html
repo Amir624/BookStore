@@ -1,0 +1,99 @@
+{% extends '_base.html' %}
+
+{% block title %}
+<title>contact us</title>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+		<main id="tg-main" class="tg-main tg-haslayout">
+			<!--************************************
+					Contact Us Start
+			*************************************-->
+			<div class="tg-sectionspace tg-haslayout">
+				<div class="container">
+					<div class="row">
+						<div class="tg-contactus">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="tg-sectionhead">
+									<h2><span>سلام</span>با ما در تماس باشید</h2>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<div id="tg-locationmap" class="tg-locationmap tg-map"></div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<form class="tg-formtheme tg-formcontactus" method="post" action="{% url 'contact_us' %}">
+                                    {% csrf_token %}
+									<fieldset>
+										<div class="form-group">
+											<input type="text" name="first_name" class="form-control" placeholder="نام * ">
+										</div>
+										<div class="form-group">
+											<input type="text" name="last_name" class="form-control" placeholder=" نام خانوادگی * ">
+										</div>
+										<div class="form-group">
+											<input type="email" name="email" class="form-control" placeholder=" ایمیل * ">
+										</div>
+										<div class="form-group">
+											<input type="text" name="title" class="form-control" placeholder=" موضوع * ">
+										</div>
+										<div class="form-group tg-hastextarea">
+											<textarea  name="text" placeholder="نظر"></textarea>
+										</div>
+										<div class="form-group">
+											<button type="submit" class="tg-btn tg-active">ارسال</button>
+										</div>
+									</fieldset>
+								</form>
+								<div class="tg-contactdetail">
+									<div class="tg-sectionhead">
+										<h2>با ما در تماس باشید</h2>
+									</div>
+									<ul class="tg-contactinfo">
+
+										<li>
+											<i class="icon-phone-handset"></i>
+											<span>
+												<em>09127996142</em>
+                                                <em>امیرحسین مرندی</em>
+											</span>
+										</li>
+
+										<li>
+											<i class="icon-envelope"></i>
+											<span>
+												<em><a href="mailto:amirhossein.marandi75@gmail.com">amirhossein.marandi75@gmail.com</a></em>
+												<em><a href="mailto:amirhossein624@gmail.com">amirhossein624@gmail.com</a></em>
+											</span>
+										</li>
+									</ul>
+									<ul class="tg-socialicons">
+
+										<li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+										<li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+										<li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--************************************
+					Contact Us End
+			*************************************-->
+		</main>
+
+
+
+
+
+
+
+
+{% endblock %}

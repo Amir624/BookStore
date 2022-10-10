@@ -1,0 +1,124 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+
+
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<main id="tg-main" class="tg-main tg-haslayout">
+			<!--************************************
+					Author Detail Start
+			*************************************-->
+			<div class="tg-sectionspace tg-haslayout">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="tg-authordetail">
+                            {% if authors.avatar %}
+								<figure class="tg-authorimg">
+									<img src="{{ authors.avatar.url }}" alt="image description" height="127" width="127">
+								</figure>
+                            {% else %}
+                                <figure class="tg-authorimg">
+									<img src="{% static 'images/author/imag-22.jpg' %}" alt="image description">
+								</figure>
+                            {% endif %}
+								<div class="tg-authorcontentdetail">
+									<div class="tg-sectionhead">
+                                        <br>
+										<h2> {{ authors.name }}</h2>
+										<ul class="tg-socialicons">
+											<li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+											<li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+											<li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+											<li class="tg-googleplus"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+											<li class="tg-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+										</ul>
+									</div>
+									<div class="tg-description">
+										<p>{{ authors.description | linebreaks }}</p>
+
+									</div>
+									<div class="tg-booksfromauthor">
+										<div class="tg-sectionhead">
+											<h2>کتابهای {{ authors.name }}</h2>
+										</div>
+
+										<div class="row">
+                                        {% for book in book_author %}
+											<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+												<div class="tg-postbook">
+													<figure class="tg-featureimg">
+														<div class="tg-bookimg">
+															<div class="tg-frontcover"><img src="{{ book.cover.url }}" alt="image description"></div>
+															<div class="tg-backcover"><img src="{{ book.cover.url }}" alt="image description"></div>
+														</div>
+														<a class="tg-btnaddtowishlist" href="{% url 'favorite' book.id %}">
+															<i class="icon-heart"></i>
+															<span>افزودن به علاقه‌مندی‌ها</span>
+														</a>
+													</figure>
+													<div class="tg-postbookcontent">
+														<ul class="tg-bookscategories">
+															<li><a href="javascript:void(0);">{{ book.genre}}</a></li>
+														</ul>
+														<div class="tg-themetagbox"><span class="tg-themetag">فروش</span></div>
+														<div class="tg-booktitle">
+															<h3><a href="javascript:void(0);">{{ book.title}}</a></h3>
+														</div>
+														<span class="tg-bookwriter">توسط: <a href="javascript:void(0);">{{ book.author}}</a></span>
+														<span class="tg-stars"><span></span></span>
+														<span class="tg-bookprice">
+															<ins>{{ book.price }} تومان</ins>
+
+														</span>
+														<form class="tg-quantityholder"
+                                                          action="{% url 'cart:add_cart' book.id %} " method="post">
+                                                        {% csrf_token %}
+
+                                                            <input type="hidden" class="quantity-input" name="quantity"
+                                                                   id="qty" value="1"
+                                                                   min="1" max="30"  placeholder="1">
+
+                                                            <button type="submit" class="tg-btn tg-btnstyletwo" >افزودن
+                                                                به سبد خرید
+                                                            </button>
+                                                        </form>
+													</div>
+												</div>
+											</div>
+
+                                        {% endfor %}
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--************************************
+					Author Detail End
+			*************************************-->
+		</main>
+		<!--************************************
+				Main End
+		*************************************-->
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+	<!--************************************
+				Main Start
+		*************************************-->
+		<main id="tg-main" class="tg-main tg-haslayout">
+			<!--************************************
+					Authors Start
+			*************************************-->
+			<div class="tg-authorsgrid">
+				<div class="container">
+					<div class="row">
+						<div class="tg-authors">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="tg-sectionhead">
+									<h2><span>ذهن زیبا پنهان</span>محبوبترین نویسندگان</h2>
+								</div>
+							</div>
+
+                        {% for author in authors %}
+
+
+
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<div class="tg-author">
+                                    {% if author.avatar %}
+									    <figure><a href="javascript:void(0);"><img width="170" height="170" src="{{ author.avatar.url }}" alt="image description"></a> </figure>
+                                    {% else %}
+                                        <figure><a href="javascript:void(0);"><img width="170" height="170" src="{% static 'images/author/imag-22.jpg' %}" alt="image description"></a></figure>
+                                    {% endif %}
+									<div class="tg-authorcontent">
+										<h2><a href="{% url 'detail_author' author.id %}">{{ author.name }}</a></h2>
+										<br>
+										<ul class="tg-socialicons">
+											<li class="tg-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+											<li class="tg-twitter"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+											<li class="tg-linkedin"><a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+                        {% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--************************************
+					Authors End
+			*************************************-->
+			<!--************************************
+					Testimonials Start
+			*************************************-->
+
+
+
+			<!--************************************
+					Picked By Author End
+			*************************************-->
+		</main>
+		<!--************************************
+				Main End
+		*************************************-->
+{% endblock %}

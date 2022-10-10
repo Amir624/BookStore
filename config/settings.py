@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #local apps
     'accounts',
     'books',
+    'pages',
 
     #third partty apps
     'ghasedakpack',
