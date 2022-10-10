@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'books',
     'pages',
+    'posts',
 
     #third partty apps
     'ghasedakpack',
@@ -73,6 +74,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'books.context_processors.author_list',
+                'posts.context_processors.post_star',
+                # 'cart.context_processors.cart',
             ],
         },
     },
