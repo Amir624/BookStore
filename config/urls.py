@@ -19,12 +19,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+                  path('rosetta/', include('rosetta.urls')),
                   path('admin/', admin.site.urls),
                   path('accounts/', include('accounts.urls')),
                   path('accounts/', include('django.contrib.auth.urls')),
                   path('', include('books.urls')),
                   path('detail/', include('pages.urls')),
-                  # path('rosetta/', include('rosetta.urls')),
                   path('news/', include('posts.urls')),
                   path('cart/', include('cart.urls')),
 

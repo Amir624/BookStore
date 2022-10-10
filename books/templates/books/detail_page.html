@@ -39,7 +39,8 @@
 														</span>
 
                                                     <ul class="tg-delevrystock">
-                                                        <li><i class="icon-rocket"></i><span>{% trans 'Shipping to all locations' %}</span>
+                                                        <li>
+                                                            <i class="icon-rocket"></i><span>{% trans 'Shipping to all locations' %}</span>
                                                         </li>
                                                         <li>
                                                             <i class="icon-checkmark-circle"></i><span>{% trans 'Shipping two business days' %}</span>
@@ -52,13 +53,13 @@
                                                           action="{% url 'cart:add_cart' book.id %} " method="post">
                                                         {% csrf_token %}
 
-                                                            <input type="number" class="quantity-input" name="quantity"
-                                                                   id="qty" value="1"
-                                                                   min="1" max="30"  placeholder="1">
+                                                        <input type="number" class="quantity-input" name="quantity"
+                                                               id="qty" value="1"
+                                                               min="1" max="30" placeholder="1">
 
-                                                            <button type="submit" class="tg-btn tg-active tg-btn-lg">
-                                                                {% trans 'add to cart' %}
-                                                            </button>
+                                                        <button type="submit" class="tg-btn tg-active tg-btn-lg">
+                                                            {% trans 'add to cart' %}
+                                                        </button>
                                                     </form>
                                                     <a class="tg-btnaddtowishlist"
                                                        href=" {% url 'favorite' book.id %} ">
@@ -74,7 +75,8 @@
                                                 <ul class="tg-bookscategories">
                                                     <li><a href="javascript:void(0);">{{ book.genere }}</a></li>
                                                 </ul>
-                                                <div class="tg-themetagbox"><span class="tg-themetag">{% trans 'sale' %}</span></div>
+                                                <div class="tg-themetagbox"><span
+                                                        class="tg-themetag">{% trans 'sale' %}</span></div>
                                                 <div class="tg-booktitle">
                                                     <h3>{{ book.title }}</h3>
                                                 </div>
@@ -85,7 +87,7 @@
                                                 <div class="tg-description">
 
                                                     <h4>
-                                                        {{ book.description | safe}}
+                                                        {{ book.description | safe }}
                                                     </h4>
                                                 </div>
 
@@ -119,7 +121,8 @@
                                                 <ul class="tg-themetabs" role="tablist">
 
                                                     <li role="presentation"><a href="#review"
-                                                                               data-toggle="tab">{% trans 'comments' %}</a></li>
+                                                                               data-toggle="tab">{% trans 'comments' %}</a>
+                                                    </li>
                                                 </ul>
 
                                                 <div class="tg-tab-content tab-content">
@@ -145,17 +148,21 @@
                                                         <div role="tabpanel" class="tg-tab-pane tab-pane active"
                                                              id="description">
 
-                                                        {% if user.is_authenticated %}
-                                                            <form method="post" , action="">
-                                                                {% csrf_token %}
-                                                                {{ form|crispy }}
-                                                                <button CLASS="ui-button" type="submit"> ارسال</button>
-                                                            </form>
+                                                            {% if user.is_authenticated %}
+                                                                <form method="post" , action="">
+                                                                    {% csrf_token %}
+                                                                    {{ form|crispy }}
+                                                                    <button CLASS="ui-button" type="submit"> ارسال
+                                                                    </button>
+                                                                </form>
 
-                                                    {% else %}
-                                                            <h3>{% trans 'Log in first to post a comment' %}</h3>
-                                                            <a href="{% url 'login' %}?next= {{  request.get_full_path|urlencode }} " class="ui-button">{% trans 'Login' %}</a>  <a href="{% url 'signup' %}" class="ui-button">{% trans 'Sign Up' %} </a>
-                                                    {% endif %}
+                                                            {% else %}
+                                                                <h3>{% trans 'Log in first to post a comment' %}</h3>
+                                                                <a href="{% url 'login' %}?next= {{ request.get_full_path|urlencode }} "
+                                                                   class="ui-button">{% trans 'Login' %}</a>
+                                                                <a href="{% url 'signup' %}"
+                                                                   class="ui-button">{% trans 'Sign Up' %} </a>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,7 +183,7 @@
                                                             <div class="tg-authorhead">
                                                                 <div class="tg-leftarea">
                                                                     <div class="tg-authorname">
-                                                                        <h2>{{ book.author}}</h2>
+                                                                        <h2>{{ book.author }}</h2>
 
                                                                     </div>
                                                                 </div>
@@ -184,7 +191,7 @@
                                                             </div>
                                                             <div class="tg-description">
                                                                 <p>
-                                                                  {{ book.author.description| truncatewords:30 }}</p>
+                                                                    {{ book.author.description| truncatewords:30 }}</p>
                                                             </div>
 
                                                         </div>
@@ -194,7 +201,9 @@
                                             <div class="tg-relatedproducts">
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                     <div class="tg-sectionhead">
-                                                        <h2><span>{% trans 'Related products' %}</span>{% trans 'also view'%}</h2>
+                                                        <h2>
+                                                            <span>{% trans 'Related products' %}</span>{% trans 'also view' %}
+                                                        </h2>
 
                                                     </div>
                                                 </div>
@@ -227,7 +236,7 @@
 
                                                                         </ul>
                                                                         <div class="tg-themetagbox"><span
-                                                                                class="tg-themetag">{% trans 'sale'%}</span>
+                                                                                class="tg-themetag">{% trans 'sale' %}</span>
                                                                         </div>
                                                                         <div class="tg-booktitle">
                                                                             <h3><a href="javascript:void(0);">
@@ -241,11 +250,20 @@
 																		<ins>{{ author.price }} تومان</ins>
 
 																	</span>
-                                                                        <a class="tg-btn tg-btnstyletwo"
-                                                                           href="javascript:void(0);">
-                                                                            <i class="fa fa-shopping-basket"></i>
-                                                                            <em>{% trans 'add to cart' %}</em>
-                                                                        </a>
+                                                                        <form class="tg-quantityholder"
+                                                                              action="{% url 'cart:add_cart' book.id %} "
+                                                                              method="post">
+                                                                            {% csrf_token %}
+
+                                                                            <input type="hidden" class="quantity-input"
+                                                                                   name="quantity"
+                                                                                   id="qty" value="1"
+                                                                                   min="1" max="30" placeholder="1">
+
+                                                                            <button type="submit"
+                                                                                    class="tg-btn tg-btnstyletwo">{% trans 'add to cart' %}
+                                                                            </button>
+                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>

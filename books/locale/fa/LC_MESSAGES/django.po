@@ -1,0 +1,164 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-10 17:18+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\templates\books\category.html:26 .\templates\books\search_result.html:26
+msgid "you searched for"
+msgstr ""
+
+#: .\templates\books\category.html:41 .\templates\books\detail_page.html:66
+#: .\templates\books\detail_page.html:219
+#: .\templates\books\favorite_list.html:55
+#: .\templates\books\filter_result.html:51 .\templates\books\home.html:98
+#: .\templates\books\search_result.html:41
+msgid "add to favorite"
+msgstr ""
+
+#: .\templates\books\category.html:50 .\templates\books\detail_page.html:77
+#: .\templates\books\detail_page.html:230
+#: .\templates\books\favorite_list.html:64
+#: .\templates\books\filter_result.html:60 .\templates\books\home.html:107
+#: .\templates\books\search_result.html:50
+#: .\templates\books\sort_list.html:107
+msgid "sale"
+msgstr ""
+
+#: .\templates\books\category.html:54 .\templates\books\detail_page.html:81
+#: .\templates\books\detail_page.html:237
+#: .\templates\books\favorite_list.html:68
+#: .\templates\books\filter_result.html:66 .\templates\books\home.html:111
+#: .\templates\books\home.html:186 .\templates\books\search_result.html:56
+#: .\templates\books\sort_list.html:111 .\templates\books\sort_list.html:179
+msgid "by"
+msgstr ""
+
+#: .\templates\books\category.html:63 .\templates\books\detail_page.html:60
+#: .\templates\books\detail_page.html:247
+#: .\templates\books\favorite_list.html:77
+#: .\templates\books\filter_result.html:75 .\templates\books\home.html:127
+#: .\templates\books\search_result.html:65 .\templates\books\sort_list.html:98
+#: .\templates\books\sort_list.html:121
+msgid "add to cart"
+msgstr ""
+
+#: .\templates\books\detail_page.html:42
+msgid "Shipping to all locations"
+msgstr ""
+
+#: .\templates\books\detail_page.html:45
+msgid "Shipping two business days"
+msgstr ""
+
+#: .\templates\books\detail_page.html:48
+msgid "inventory"
+msgstr ""
+
+#: .\templates\books\detail_page.html:48
+msgid "in stock"
+msgstr ""
+
+#: .\templates\books\detail_page.html:95
+msgid "detail"
+msgstr ""
+
+#: .\templates\books\detail_page.html:117
+msgid "Product Description"
+msgstr ""
+
+#: .\templates\books\detail_page.html:122
+msgid "comments"
+msgstr ""
+
+#: .\templates\books\detail_page.html:156
+msgid "Log in first to post a comment"
+msgstr ""
+
+#: .\templates\books\detail_page.html:157
+msgid "Login"
+msgstr ""
+
+#: .\templates\books\detail_page.html:157
+msgid "Sign Up"
+msgstr ""
+
+#: .\templates\books\detail_page.html:168
+msgid "about author"
+msgstr ""
+
+#: .\templates\books\detail_page.html:197
+msgid "Related products"
+msgstr ""
+
+#: .\templates\books\detail_page.html:197
+msgid "also view"
+msgstr ""
+
+#: .\templates\books\favorite_list.html:26
+msgid "At your choice"
+msgstr ""
+
+#: .\templates\books\favorite_list.html:26
+msgid "favorite list"
+msgstr ""
+
+#: .\templates\books\filter_result.html:29
+msgid "filter"
+msgstr ""
+
+#: .\templates\books\home.html:26
+msgid "By people choice"
+msgstr ""
+
+#: .\templates\books\home.html:26
+msgid "Bestselling"
+msgstr ""
+
+#: .\templates\books\home.html:70 .\templates\books\sort_list.html:70
+msgid "sort by"
+msgstr ""
+
+#: .\templates\books\home.html:71 .\templates\books\sort_list.html:71
+msgid "cheap"
+msgstr ""
+
+#: .\templates\books\home.html:72 .\templates\books\sort_list.html:72
+msgid "news"
+msgstr ""
+
+#: .\templates\books\home.html:148
+msgid "search by title, author ...."
+msgstr ""
+
+#: .\templates\books\home.html:154 .\templates\books\sort_list.html:147
+msgid "category"
+msgstr ""
+
+#: .\templates\books\home.html:170
+msgid "trend news"
+msgstr ""
+
+#: .\templates\books\home.html:196 .\templates\books\sort_list.html:189
+msgid "instagram"
+msgstr ""
+
+#: .\templates\books\home.html:277 .\templates\books\sort_list.html:270
+msgid "best authors"
+msgstr ""
+
+#: .\templates\books\sort_list.html:163
+msgid "trend products"
+msgstr ""

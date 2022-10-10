@@ -93,10 +93,17 @@
                                                                                            alt="image description">
                                                             </div>
                                                         </div>
-                                                        <a class="tg-btnaddtowishlist" href="{% url 'favorite' book.id %}">
-                                                            <i class="icon-heart"></i>
-                                                            <span>{% trans 'add to cart' %}</span>
-                                                        </a>
+                                                        <form class="tg-quantityholder"
+                                                          action="{% url 'cart:add_cart' book.id %} " method="post">
+                                                        {% csrf_token %}
+
+                                                            <input type="hidden" class="quantity-input" name="quantity"
+                                                                   id="qty" value="1"
+                                                                   min="1" max="30"  placeholder="1">
+
+                                                            <button type="submit" class="tg-btn tg-btnstyletwo" >{% trans 'add to cart' %}
+                                                            </button>
+                                                    </form>
                                                     </figure>
                                                     <div class="tg-postbookcontent">
                                                         <ul class="tg-bookscategories">

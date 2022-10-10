@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'books',
     'pages',
     'posts',
+    'cart',
 
     #third partty apps
     'ghasedakpack',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'jalali_date',
     'django_filters',
     'crispy_forms',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -126,8 +128,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+LANGUAGES = (
+    ('fa', 'persian'),
+    ('en', 'english'),
+)
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 

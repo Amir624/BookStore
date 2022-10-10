@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.views import login_required
 from .filters import BookFilter
-
+from posts.models import Post
 
 class HomePage(generic.ListView):
     model = Book
