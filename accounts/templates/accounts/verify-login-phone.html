@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verify code</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+<!-- O P E N : REGISTER CONTAINER -->
+<div id="register">
+    <!-- O P E N : LEFT SECTION -->
+    <div class="left-sec">
+        <h2>Welcome Back !</h2>
+        <p>This is some test text to create an register form</p>
+        <a href="{% url 'signup' %}" class="signin-btn">SIGN IN</a>
+        <a href="{% url 'home' %}" class="signin-btn"> HOME</a>
+    </div>
+    <!-- C L O S E : LEFT SECTION -->
+
+    <!-- O P E N : RIGHT SECTION -->
+    <div class="right-sec">
+        <h2>Confirm code</h2>
+        <p> please Enter the code sent</p>
+
+        <form action="{% url 'verify' %}" class="signin-form" method="POST">
+            {% csrf_token %}
+
+                <img src="{% static 'images/password.png' %}" alt="user">
+                <label for="id_code"></label>
+
+                <input type="number" name="code" required="" id="id_code" placeholder="Name" class="form-input">
+                <br>
+
+                <input type="submit" value="Send " class="signup-btn">
+
+        </form>
+        <!-- C L O S E : RIGHT SECTION -->
+
+    </div>
+</div>
+<!-- C L O S E : REGISTER CONTAINER -->
+</body>
+</html>
